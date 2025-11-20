@@ -1,71 +1,106 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
+
 body {
-    font-size: 10pt;
     font-family: 'Times New Roman';
+    font-size: 14pt;
 }
 
-p {
-    color: red;
-}
-
-
-
-h1 {
-    font-family: 'Agbalumo';
-    font-size: 36pt;
-}
-main, header, footer, nav ul {
-    max-width: 50rem;
-    margin: 0 auto 0 auto;
-}
-main {
-    background-color: bisque;
-}
-
-/* nav ul li {
-    display: inline-block;
-    background-color: grey;
-    padding: 1em;
-    margin: 1em;
-} */
-
-header {
-    background-image: url("../img/polacks.jpg");
-    background-size: cover;
-    overflow: hidden;
-    width: 100%;
-    height: 200px;
-    opacity: 0.5;
-}
-
-header h1 {
-    width:40rem;
+#main-header {
+    position: relative;      
+    max-width: 100rem;       
     margin: 0 auto;
-    text-align: center;
+    height: 150px;         
+    overflow: hidden;        
 }
 
-nav ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 9.25em);
-    gap: 1em;
-    padding: 0;
-}
 
-nav li {
+#header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       
+    opacity: 0.55;          
     display: block;
-    background-color: grey;
-    padding: 1em;
 }
 
-.Very-good {
-    color: green;
+#header-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Agbalumo';
+    font-size: 48px;          
+    color: rgba(255,255,255,0.95);
+    text-align: center;
+    margin: 0;
+    z-index: 10;
 }
 
-.Master {
-    color: green;
-    font-weight: bold;
+
+#burger {
+    max-height: 400px;
+    max-width: 100rem;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    padding: 1rem;  
+}
+
+#burgerselection {
+    font-family: 'Agbalumo';
+    font-size: 1rem;
+
+}
+
+.burger-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.2rem;
+}
+
+.burger-grid img {
+    width: 45%;
+    height: auto;
+    display: block;
+}
+
+.burger-item {
+    padding: 0.5rem 0;
+}
+
+
+#orderinformation {
+    margin: 1rem 0;
+}
+
+button {
+    display: block;
+    margin: 1rem auto;
+}
+
+button:hover {
+    background-color: green;
+    cursor: pointer;
 }
 
 .allergies {
-  font-weight: bold;
+    font-weight: bold;
+}
+
+#orderinformation {
+    background-color: #fff4e6;  
+    color: black;
+    padding: 1rem;
+}
+
+section {
+    margin: 2rem auto;
+    max-width: 100rem;
+}
+
+#burger,
+#orderinformation {
+    border: 3px dashed grey;
 }

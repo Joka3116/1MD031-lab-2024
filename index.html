@@ -8,94 +8,97 @@
 </head>
 
 <body>
-  <header>
-    <h1>Welcome to burgir online</h1>
-    <p>Order your favorite burgir </p>
-  </header>
+
+<header id="main-header">
+    <h1 id="header-title">Welcome to burgir online</h1>
+    <img id="header-image" src="img/hipsterbild.jpg" alt="">
+</header>
 
   <main>
-    <section>
-      <div style="display: inline-block">
-        <h3>Crispy burgir</h3>
-        <img src="img/crispyburgir.jpg" alt="Crispy burgir" width="250">
-        <div class="allergies">
-        <ul>
-          <li>Contains alcohol</li>
-          <li>Pure lactose</li>
-          <li>Glutenfree bun, burger is not</li>
-        </ul>
-        </div> 
-      </div>
+    <section id="burger">
+      <h2 id="burgerselection">Our burger selection</h2>
 
-      <div style="display: inline-block">
-        <h3>Vego burgir</h3>
-        <img src="img/90g.jpeg" alt="90g burgir" width="250">
-        <div class="allergies">
-        <ul>
-          <li>May contain meat</li>
-          <li>Lactosefree</li>
-          <li>Glutenfree burgir, bun is not</li>
-        </ul>
+      <div class="burger-grid">
+
+        <div class="burger-item">
+          <h3>Crispy burgir</h3>
+          <img src="img/crispyburgir.jpg" alt="Crispy burgir">
+          <div class="allergies">
+            <ul>
+              <li>Contains alcohol</li>
+              <li>Pure lactose</li>
+              <li>Glutenfree bun, burger is not</li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div style="display: inline-block">
-        <h3>Non burgir burgir</h3>
-        <img src="img/taco.jpeg" alt="Crispy burgir" width="250 ">
-        <div class="allergies">
-        <ul>
-          <li>Tomatoes not included</li>
-          <li>High in caffeine</li>
-          <li>Served in soft bread</li>
-        </ul>
+        <div class="burger-item">
+          <h3>Vego burgir</h3>
+          <img src="img/90g.jpeg" alt="90g burgir">
+          <div class="allergies">
+            <ul>
+              <li>May contain meat</li>
+              <li>Lactosefree</li>
+              <li>Glutenfree burgir, bun is not</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="burger-item">
+          <h3>Non burgir burgir</h3>
+          <img src="img/taco.jpeg" alt="Crispy burgir">
+          <div class="allergies">
+            <ul>
+              <li>Tomatoes not included</li>
+              <li>High in caffeine</li>
+              <li>Served in soft bread</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-
-
-
-
-
-
     </section>
 
-    <section>
+
+    </main>
+
+    <section id="orderinformation">
       <h2>Customer information</h2>
       <p>Please provide your delivery information below.</p>
-    </section>
-  </main>
-
+  
   <footer>
+
     <p>
       <label for="full-name">Full name</label><br>
-      <input type="text" id="full-name" name="fn" required="required" placeholder="First- and last name">
+      <input type="text" id="full-name" name="fn" required placeholder="First- and last name">
     </p>
+
     <p>
       <label for="email">E-mail</label><br>
-      <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+      <input type="email" id="email" name="em" required placeholder="E-mail address">
     </p>
 
     <p>
       <label for="street-name">Street name</label><br>
-      <input type="text" id="street-name" name="street" required="required" placeholder="Street name">
+      <input type="text" id="street-name" name="street" required placeholder="Street name">
     </p>
+
     <p>
       <label for="street-number">Street number</label><br>
-      <input type="number" id="street-number" name="streetnr" required="required" placeholder="Street number">
+      <input type="number" id="street-number" name="streetnr" required placeholder="Street number">
     </p>
 
     <p>
       <label for="recipient">Payment options</label><br>
       <select id="recipient" name="rcp">
         <option>Klarna</option>
-        <option selected> SMS lån</option>
-        </option>
+        <option selected>SMS lån</option>
         <option>Swish</option>
         <option>Apple pay</option>
       </select>
     </p>
 
-
-    <label for="recipient">Gender</label><br>
+    <label>Gender</label><br>
 
     <input type="radio" id="burgir" name="gender" value="burgir" checked>
     <label for="burgir">Burgir</label><br>
@@ -108,17 +111,13 @@
 
     <input type="radio" id="non-disclosed" name="gender" value="non-disclosed">
     <label for="non-disclosed">Non disclosed</label><br>
+
+    <button type="button">
+      <img src="img/foodora.jpg" alt="Foodora" height="50" width="100"><br>
+      Send Info
+    </button>
+
   </footer>
-
-  <button type="button">
-    <img src="img/foodora.jpg" alt="Crispy burgir" height="50" width="100 "><br>
-    Send Info
-
-
-
-
-
-
+  </section>
 </body>
-
 </html>
