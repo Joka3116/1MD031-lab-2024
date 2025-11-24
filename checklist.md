@@ -26,6 +26,8 @@ Your index.html file contains:
 - [x] A button to place the order
 - [x] Ensure the website loads when opening http://localhost:5173/
 
+
+## 03 CSS
 The style.css file contains:
 - [x] A rule to make the allergy information bold
 - [x] Different text and background color for the two different sections (burger selection and customer information)
