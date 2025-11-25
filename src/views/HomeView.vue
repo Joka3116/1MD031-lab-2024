@@ -1,20 +1,6 @@
 <template>
-<div>
-    <div>
-    <h1>Burgers</h1>
-    <Burger v-for="burger in burgers"
-            v-bind:burger="burger" 
-            v-bind:key="burger.name"/>
-    </div>
-    <input type="text" v-model="burgerText">
-<div>
-  {{ burgerText }}
-</div>
-    <div id="map" v-on:click="addOrder">
-    click here
-    </div>
-</div>
 
+<div> 
 <header id="main-header">
     <h1 id="header-title">Welcome to burgir online</h1>
     <img id="header-image" src="/img/hipsterbild.jpg" alt="">
@@ -24,47 +10,16 @@
     <section id="burger">
       <h2 id="burgerselection">Our burger selection</h2>
 
-      <div class="burger-grid">
+<div class="burger-grid">
+  <Burger 
+    v-for="burger in burgers"
+    :key="burger.name"
+    :burger="burger"
+    @update-order="updateOrderedBurgers"
+  />
+</div>
 
-        <div class="burger-item">
-          <h3>Crispy burgir</h3>
-          <img src="/img/crispyburgir.jpg" alt="Crispy burgir">
-          <div class="allergies">
-            <ul>
-              <li>Contains alcohol</li>
-              <li>Pure lactose</li>
-              <li>Glutenfree bun, burger is not</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="burger-item">
-          <h3>Vego burgir</h3>
-          <img src="/img/90g.jpeg" alt="90g burgir">
-          <div class="allergies">
-            <ul>
-              <li>May contain meat</li>
-              <li>Lactosefree</li>
-              <li>Glutenfree burgir, bun is not</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="burger-item">
-          <h3>Non burgir burgir</h3>
-          <img src="/img/taco.jpeg" alt="Crispy burgir">
-          <div class="allergies">
-            <ul>
-              <li>Tomatoes not included</li>
-              <li>High in caffeine</li>
-              <li>Served in soft bread</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
     </section>
-
 
     </main>
 
@@ -74,31 +29,42 @@
   
   <footer>
 
-    <p>
-      <label for="full-name">Full name</label><br>
-      <input type="text" id="full-name" name="fn" required placeholder="First- and last name">
-    </p>
+    <input 
+      type="text" 
+      id="full-name" 
+      v-model="fullName" 
+      required 
+      placeholder="First- and last name"
+    >
 
-    <p>
-      <label for="email">E-mail</label><br>
-      <input type="email" id="email" name="em" required placeholder="E-mail address">
-    </p>
+    <input 
+      type="email" 
+      id="email" 
+      v-model="email" 
+      required 
+      placeholder="E-mail address"
+    >
+    <input 
+      type="text" 
+      id="street-name"
+      v-model="streetName" 
+      required 
+      placeholder="Street name"
+    >
 
-    <p>
-      <label for="street-name">Street name</label><br>
-      <input type="text" id="street-name" name="street" required placeholder="Street name">
-    </p>
-
-    <p>
-      <label for="street-number">Street number</label><br>
-      <input type="number" id="street-number" name="streetnr" required placeholder="Street number">
-    </p>
+    <input 
+      type="number" 
+      id="street-number" 
+      v-model="streetNumber" 
+      required 
+      placeholder="Street number"
+    >
 
     <p>
       <label for="recipient">Payment options</label><br>
-      <select id="recipient" name="rcp">
+      <select id="recipient" v-model="payment">
         <option>Klarna</option>
-        <option selected>SMS lån</option>
+        <option>SMS lån</option>
         <option>Swish</option>
         <option>Apple pay</option>
       </select>
@@ -106,31 +72,34 @@
 
     <label>Gender</label><br>
 
-    <input type="radio" id="burgir" name="gender" value="burgir" checked>
+    <input type="radio" id="burgir" value="burgir" v-model="gender">
     <label for="burgir">Burgir</label><br>
 
-    <input type="radio" id="male" name="gender" value="male">
+    <input type="radio" id="male" value="male" v-model="gender">
     <label for="male">Male</label><br>
 
-    <input type="radio" id="female" name="gender" value="female">
+    <input type="radio" id="female" value="female" v-model="gender">
     <label for="female">Female</label><br>
 
-    <input type="radio" id="non-disclosed" name="gender" value="non-disclosed">
+    <input type="radio" id="non-disclosed" value="non-disclosed" v-model="gender">
     <label for="non-disclosed">Non disclosed</label><br>
 
-    <button type="button">
+    <button type="button" @click="placeOrder">
       <img src="/img/foodora.jpg" alt="Foodora" height="50" width="100"><br>
       Send Info
     </button>
 
+
+
   </footer>
   </section>
-
+</div>
 
 </template>
 
 
 <script>
+import menu from '../assets/menu.json'
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
 
@@ -144,24 +113,23 @@ function MenuItem(name, kCal, url, gluten, lactose) {
     this.lactose = lactose;
 }
 
-const menu = [
-  new MenuItem("Crispy Burgir", 650, "/img/crispyburgir.jpg", true, true),
-  new MenuItem("Vego Burgir", 450, "/img/90g.jpeg", false, false),
-  new MenuItem("Non Burgir Burgir", 300, "/img/taco.jpeg", false, false)
-];
-
-console.log(menu); 
-
 export default {
   name: 'HomeView',
   components: {
     Burger
   },
 
-data: function () {
+data() {
   return {
     burgerText: "Välj en burgare",
-    burgers: menu
+    burgers: menu,
+    fullName: "",
+    email: "",
+    streetName: "",
+    streetNumber: "",
+    payment: "SMS lån",
+    gender: "burgir",
+    orderedBurgers: {} 
   }
 },
 
@@ -169,6 +137,11 @@ data: function () {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
     },
+  updateOrderedBurgers(data) {
+    this.orderedBurgers[data.name] = data.amount;
+    console.log(this.orderedBurgers);
+  },
+
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
@@ -176,22 +149,30 @@ data: function () {
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
                                 orderItems: ["Beans", "Curry"]
-                              }
-                 );
-    }
-  }
+                              });
+    },
+
+  placeOrder() {
+    console.log("---- NEW ORDER ----");
+    console.log("Name:", this.fullName);
+    console.log("Email:", this.email);
+    console.log("Street:", this.streetName, this.streetNumber);
+    console.log("Payment:", this.payment);
+    console.log("Gender:", this.gender);
+    console.log("Ordered Burgers:", this.orderedBurgers);
+  },
+},
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
+
   #map {
     width: 300px;
     height: 300px;
     background-color: red;
   }
-
-
-@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
 
 body {
     font-family: 'Times New Roman';
@@ -205,7 +186,6 @@ body {
     height: 150px;         
     overflow: hidden;        
 }
-
 
 #header-image {
     width: 100%;
@@ -229,9 +209,8 @@ body {
     z-index: 10;
 }
 
-
 #burger {
-    max-height: 400px;
+    max-height: auto;
     max-width: 100rem;
     margin: 0 auto;
     overflow: hidden;
@@ -260,11 +239,12 @@ body {
 
 .burger-item {
     padding: 0.5rem 0;
+    min-height: 500px;
 }
 
-
 #orderinformation {
-    margin: 1rem 0;
+    margin: auto;
+
 }
 
 button {
