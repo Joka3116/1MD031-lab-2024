@@ -16,6 +16,7 @@ const io = new Server(httpServer, {
 // prepare for multiple instances of data if necessary
 function Data() {
   this.orders = {};
+  
 }
 
 /*
